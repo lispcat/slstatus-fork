@@ -1,0 +1,10 @@
+## patches
+
+slstatus-battery-notify-20240127-a56a0a5.diff
+slstatus-backlight-4bd78c9.diff
+slstatus-alsa-master-20230420-84a2f11.diff
+slstatus-signals-1.0.patch
+
+## personalization
+
+personalization.diff

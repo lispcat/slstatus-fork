@@ -6,14 +6,26 @@ const unsigned int interval = 1000;
 /* text to show if no value can be retrieved */
 static const char unknown_str[] = "n/a";
 
-/* maximum output string length */
-#define MAXLEN 2048
+/* maximum command output length */
+#define CMDLEN 128
+
+/* battery levels to notify - add any levels you want to receive notification for (in percent) */
+const int notifiable_levels[] = {
+    20,
+    10,
+    5,
+};
 
 /*
  * function            description                     argument (example)
  *
+ * backlight_perc      backlight percentage            device name
+ *                                                     (intel_backlight)
+ *                                                     NULL on OpenBSD
  * battery_perc        battery percentage              battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
+ * battery_notify      linux battery notifications     battery name (BAT0)
+ *                                                     OpenBSD/FreeBSD not supported
  * battery_remaining   battery remaining HH:MM         battery name (BAT0)
  *                                                     NULL on OpenBSD/FreeBSD
  * battery_state       battery charging state          battery name (BAT0)
@@ -58,12 +70,25 @@ static const char unknown_str[] = "n/a";
  * uid                 UID of current user             NULL
  * uptime              system uptime                   NULL
  * username            username of current user        NULL
+ * alsa_master_vol     ALSA Master device volume       NULL
  * vol_perc            OSS/ALSA volume in percent      mixer file (/dev/mixer)
  *                                                     NULL on OpenBSD/FreeBSD
  * wifi_essid          WiFi ESSID                      interface name (wlan0)
  * wifi_perc           WiFi signal in percent          interface name (wlan0)
  */
 static const struct arg args[] = {
-	/* function format          argument */
-	{ datetime, "%s",           "%F %T" },
+	/* function		format		argument	turn	signal */
+	/* { cat,		" %s | ",	"/tmp/dwl-keymap",	1,	-1 }, */
+	{ run_command,		" %s | ",	"dwl-print-kbd-layout.sh",1,	5  },
+	{ backlight_perc,	"l:%s | ",	"acpi_video0",		1,	6  },
+	{ alsa_master_vol,	"v:%s | ",	"NULL",			1,	7  },
+       	/* { battery_perc,	"b:%s%% ",	"BAT0",			1,	-1 }, */
+	/* { battery_remaining,	"%s | ",	"BAT0",			5,	-1 }, */
+	{ run_command,		"%s | ",	"dwl-print-battery.sh",	5,	8  },
+	{ datetime,		"%s ",		"%a %d %b %I:%M %P",	1,	9  },
+	/* just notif */
+        { battery_notify,	"",		"BAT0",			10,	10 },
 };
+
+/* maximum output string length */
+#define MAXLEN CMDLEN * LEN(args)

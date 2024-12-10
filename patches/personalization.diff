@@ -1,0 +1,23 @@
+Index: slstatus/config.def.h
+===================================================================
+--- slstatus.orig/config.def.h
++++ slstatus/config.def.h
+@@ -77,10 +77,14 @@ const int notifiable_levels[] = {
+  * wifi_perc           WiFi signal in percent          interface name (wlan0)
+  */
+ static const struct arg args[] = {
+-	/* function format          argument turn signal */
+-	{ datetime, "%s",           "%F %T", 1,   -1 },
+-        { battery_notify, "",       "BAT0"}, /* There is nothing to print its just a notifications*/
+-
++	/* function		format		argument	turn	signal */
++	{ backlight_perc,	" L:%s | ",	"acpi_video0",	1,	-1 },
++	{ alsa_master_vol,	"v:%s | ",	"NULL",		1,	-1 },
++       	{ battery_perc,		"B:%s%% ",	"BAT0",		1,	-1 },
++	{ battery_remaining,	"%s | ",	"BAT0",		5,	-1 },
++	{ datetime,		"%s ",		"%a %d %b %I:%M %P",1,	-1 },
++	/* just notif */
++        { battery_notify,	"",		"BAT0",		10,	-1 },
+ };
+ 
+ /* maximum output string length */

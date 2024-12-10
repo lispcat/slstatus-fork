@@ -1,7 +1,11 @@
 /* See LICENSE file for copyright and license details. */
 
+/* backlight */
+const char *backlight_perc(const char *);
+
 /* battery */
 const char *battery_perc(const char *);
+void battery_notify(const char *);
 const char *battery_remaining(const char *);
 const char *battery_state(const char *);
 
@@ -78,6 +82,7 @@ const char *username(const char *unused);
 
 /* volume */
 const char *vol_perc(const char *card);
+const char *alsa_master_vol(void);
 
 /* wifi */
 const char *wifi_essid(const char *interface);
