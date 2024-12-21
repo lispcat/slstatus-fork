@@ -82,12 +82,13 @@ static const struct arg args[] = {
 	{ run_command,		" %s | ",	"dwl-print-kbd-layout.sh",1,	5  },
 	{ backlight_perc,	"l:%s | ",	"acpi_video0",		1,	6  },
 	{ alsa_master_vol,	"v:%s | ",	"NULL",			1,	7  },
+	{ run_command,          "%s | ",	"mullvad-status-print.sh",5,	8  },
        	/* { battery_perc,	"b:%s%% ",	"BAT0",			1,	-1 }, */
 	/* { battery_remaining,	"%s | ",	"BAT0",			5,	-1 }, */
-	{ run_command,		"%s | ",	"dwl-print-battery.sh",	5,	8  },
-	{ datetime,		"%s ",		"%a %d %b %I:%M %P",	1,	9  },
+	{ run_command,		"%s | ",	"dwl-print-battery.sh",	5,	9  },
+	{ datetime,		"%s ",		"%a %d %b %I:%M %P",	1,	10 },
 	/* just notif */
-        { battery_notify,	"",		"BAT0",			10,	10 },
+        { battery_notify,	"",		"BAT0",			10,	11 },
 };
 
 /* maximum output string length */
