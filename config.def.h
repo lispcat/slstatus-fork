@@ -80,8 +80,8 @@ static const struct arg args[] = {
 	/* function		format		argument	turn	signal */
 	/* { cat,		" %s | ",	"/tmp/dwl-keymap",	1,	-1 }, */
 	{ run_command,		" %s | ",	"dwl-print-kbd-layout.sh",1,	5  },
-	{ backlight_perc,	"l:%s | ",	"acpi_video0",		1,	6  },
-	{ alsa_master_vol,	"v:%s | ",	"NULL",			1,	7  },
+	{ alsa_master_vol,	"v:%s | ",	"NULL",			1,	6  },
+	{ backlight_perc,	"b:%s | ",	"acpi_video0",		1,	7  },
 	{ run_command,          "%s | ",	"mullvad-status-print.sh",5,	8  },
        	/* { battery_perc,	"b:%s%% ",	"BAT0",			1,	-1 }, */
 	/* { battery_remaining,	"%s | ",	"BAT0",			5,	-1 }, */
